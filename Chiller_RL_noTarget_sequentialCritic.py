@@ -40,6 +40,7 @@ MONITOR_DIR = './results/gym_chiller_seCri'
 SUMMARY_DIR = './results/tf_chiller_seCri'
 # File for saving reward and qmax
 RESULTS_FILE = './results/rewards_chiller_seCri.npz'
+REWARD_FILE = './results/total_rewards_chiller_seCri.npz'
 Parameters_File = './results/actor_critic_parameters_seCri.npz'
 RANDOM_SEED = 123
 # Size of replay buffer
@@ -246,11 +247,13 @@ def train(sess, env, network):
         print('Reward_average: ' + str(ep_reward/float(j+1)) + ', steps ,'\
                       + str(j) + ', Episode: ' + str(i) + \
                       ', Qmax_average: ' +  str(ep_ave_max_q / float(j+1)))
-        total_reward(i,0)=ep_reward/float(j+1)
+
+        total_reward[i,0]=ep_reward/float(j+1)
         arr_reward[i] = ep_reward
         arr_qmax[i] = ep_ave_max_q / float(j+1)
         np.savez(RESULTS_FILE, arr_reward[0:i], arr_qmax[0:i], j)
-        plt.plot(total_reward)
+        np.savez(REWARD_FILE, total_reward)
+        #plt.plot(total_reward)
 
         actor_params = sess.run(actor.params)       
         critic_params = sess.run(critic.params)       

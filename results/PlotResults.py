@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-r = np.load('C:/Users/ANIBOH OLAIDE/Documents/UPWORK/4 DRL Encode/Juan/Chillercodes_backup/Data/Datasets.npz')
+r = np.load('/home/paperspace/Documents/chiller/Actor-Critic-Process-control/Data/Datasets.npz')
 data = r['arr_0']
 
 y0 = data[100:1000, 0]
@@ -21,14 +21,21 @@ axs[2].set_ylabel('CWSTemp(Celsius)')
 axs[2].set_xlabel('Time in minutes')
 
 
-rdata =  np.load('C:/Users/ANIBOH OLAIDE/Documents/UPWORK/4 DRL Encode/Juan/Chillercodes_backup/results/rewards_chiller_seCri.npz')
+rdata =  np.load('/home/paperspace/Documents/chiller/Actor-Critic-Process-control/results/rewards_chiller_seCri.npz')
 data1 = rdata['arr_0']
 data2 = rdata['arr_1']
+newdata = np.load('/home/paperspace/Documents/chiller/Actor-Critic-Process-control/results/total_rewards_chiller_seCri.npz')
+data3 = newdata['arr_0']
 
-fig2, axs2 = plt.subplots(2, 1)
+fig2, axs2 = plt.subplots(3, 1)
 axs2[0].plot(data1, linewidth=0.5)
 axs2[0].set_ylabel('Average Reward')
 axs2[1].plot(data2, linewidth=0.5)
 axs2[1].set_ylabel('Average Qmax_Value')
-axs2[1].set_xlabel('Number of Episodes')
+axs2[2].plot(data3, linewidth=0.5)
+axs2[2].set_xlabel('Number of Episodes')
+
+fig3, axs3 = plt.subplots(1,1)
+axs3[0].plot(data3, linewidth=0.5)
+axs3[0].set_xlabel('Number of Episodes')
 plt.show()

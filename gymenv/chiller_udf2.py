@@ -14,8 +14,8 @@ class ChillerEnv_2(gym.Env):
     def __init__(self):
         self.cof = 0.01  ## scale of CL AND SP
         self.num = 3 ## inputs numbers
-        self.dir = 'F:/Python3.5.2/ChillerModelBased/MLPparameters/epoches_18.npz'
-        r = np.load('F:/Python3.5.2/ChillerModelBased/Data/Datasets.npz')
+        self.dir = '/home/paperspace/Documents/Chiller/Actor-Critic-Process-control/MLPparameters/epoches_18.npz'
+        r = np.load('/home/paperspace/Documents/Chiller/Actor-Critic-Process-control/Data/Datasets.npz')
         self.orginalData = r['arr_0']        
         self.CLrange = np.array([946.71, 1945.83])
         self.SPrange = np.array([805.4,1201.038])
@@ -36,7 +36,7 @@ class ChillerEnv_2(gym.Env):
         #pdb.set_trace()
         self.inputs_renor = self.inputs_renor + increment
         return self.inputs_renor    
-    def _step(self,action):        
+    def step(self,action):        
         #系统当前的状态
         #pdb.set_trace()        
         state = self.state

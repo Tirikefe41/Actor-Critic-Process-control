@@ -1,7 +1,5 @@
 """ 
 Data structure for implementing experience replay
-
-Author: Patrick Emami
 """
 from collections import deque
 import random
